@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d46a24fd-5ceb-473b-9981-7c83bdd78d48" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sandbox/src/main/java/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/sandbox/src/main/java/Geometry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +70,15 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="Square" />
+      <recent name="Rectangle" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Geometry">
     <configuration name="Geometry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Geometry" />
+      <option name="MAIN_CLASS_NAME" value="ru.stqa.geometry.Geometry" />
       <module name="sandbox.main" />
       <method v="2">
         <option name="Make" enabled="true" />
