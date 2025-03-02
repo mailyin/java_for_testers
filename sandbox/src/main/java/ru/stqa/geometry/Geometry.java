@@ -4,8 +4,6 @@ import ru.stqa.geometry.figures.Rectangle;
 import ru.stqa.geometry.figures.Square;
 import ru.stqa.geometry.figures.Triangle;
 
-import java.text.DecimalFormat;
-
 public class Geometry {
     public static void main(String[] args) {
         Square.printSquareArea(7.3);
