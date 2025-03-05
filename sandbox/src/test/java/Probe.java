@@ -1,10 +1,21 @@
 public class Probe {
     public static void main(String[] args) {
-        double a = 3;
-        double b = 4;
-        double c = 5;
-        double p = (a + b + c) / 2;
-        double s = Math.sqrt(p * (p-a) * (p-b) * (p-c));
-        System.out.println("S равняется " + s);
+
+
+        class Pet {
+            int weight;
+            String name;
+            String type;
+        }
+
+
+        Pet animal = new Pet();
+        animal.type = "Cat";
+        animal.name = "Richard";
+        animal.weight = 10;
+
+        System.out.println(
+                "Домашнее животное: " + animal.type + "\nКличка: " + animal.name + "\nВес: " + animal.weight
+        );
     }
 }

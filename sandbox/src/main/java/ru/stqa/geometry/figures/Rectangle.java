@@ -1,12 +1,13 @@
 package ru.stqa.geometry.figures;
 
-public class Rectangle {
-     public static void printRectangleArea(double b, double c) {
-        var text = String.format("Площадь прямоугольника со сторонами %.1f и %.1f = %.1f", b, c, rectangleArea(b, c));
+public record Rectangle(double a, double b) {
+
+    public static void printRectangleArea(double a, double b) {
+        var text = String.format("Площадь прямоугольника со сторонами %.1f и %.1f = %.1f", a, b, rectangleArea(a, b));
          System.out.println(text);
     }
 
-    private static double rectangleArea(double b, double c) {
-        return b * c;
+    private static double rectangleArea(double a, double b) {
+        return a * b;
     }
 }

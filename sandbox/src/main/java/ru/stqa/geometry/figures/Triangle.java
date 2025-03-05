@@ -1,21 +1,23 @@
 package ru.stqa.geometry.figures;
 
-public class Triangle {
-    public static void printTrianglePerimeter(double d, double e, double f) {
-        String text = String.format("Периметр треугольника со сторонами %.1f, %.1f и %.1f = %.1f", d, e, f, perimeter(d, e, f));
+public record Triangle(double side1, double side2, double side3) {
+
+    public static void printTrianglePerimeter(Triangle exampleTriangle) {
+        String text = String.format("Периметр треугольника со сторонами %.1f, %.1f и %.1f = %.1f", exampleTriangle.side1, exampleTriangle.side2, exampleTriangle.side3, exampleTriangle.perimeter());
         System.out.println(text);
     }
-    public static double perimeter(double d, double e, double f) {
-        return d + e + f;
+    public double perimeter() {
+        return this.side1 + this.side2 + this.side3;
     }
 
 
-    public static void printTriangleArea(double d, double e, double f) {
-        String text = String.format("Площадь треугольника со сторонами %.1f, %.1f и %.1f = %.1f", d, e, f, area(d, e, f));
+    public static void printTriangleArea(Triangle exampleTriangle) {
+        String text = String.format("Площадь треугольника со сторонами %.1f, %.1f и %.1f = %.1f", exampleTriangle.side1, exampleTriangle.side2, exampleTriangle.side3, exampleTriangle.area());
         System.out.println(text);
     }
-    public static double area(double a, double b, double c) {
-        double p = (a + b + c) / 2;
-        return Math.sqrt(p * (p-a) * (p-b) * (p-c));
+
+    public double area() {
+        double p = (side1 + side2 + side3) / 2;
+        return Math.sqrt(p * (p-side1) * (p-side2) * (p-side3));
     }
 }
