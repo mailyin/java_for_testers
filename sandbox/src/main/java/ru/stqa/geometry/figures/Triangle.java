@@ -1,5 +1,7 @@
 package ru.stqa.geometry.figures;
 
+import java.util.Objects;
+
 public record Triangle(double side1, double side2, double side3) {
 
     public Triangle {
@@ -28,5 +30,22 @@ public record Triangle(double side1, double side2, double side3) {
     public double area() {
         double p = (side1 + side2 + side3) / 2;
         return Math.sqrt(p * (p-side1) * (p-side2) * (p-side3));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return (Double.compare(this.side1, triangle.side1) == 0 && Double.compare(this.side2, triangle.side2) == 0 && Double.compare(this.side3, triangle.side3) == 0)
+                || (Double.compare(this.side1, triangle.side1) == 0 && Double.compare(this.side2, triangle.side3) == 0 && Double.compare(this.side3, triangle.side2) == 0)
+                || (Double.compare(this.side1, triangle.side2) == 0 && Double.compare(this.side2, triangle.side1) == 0 && Double.compare(this.side3, triangle.side3) == 0)
+                || (Double.compare(this.side1, triangle.side2) == 0 && Double.compare(this.side2, triangle.side3) == 0 && Double.compare(this.side3, triangle.side1) == 0)
+                || (Double.compare(this.side1, triangle.side3) == 0 && Double.compare(this.side2, triangle.side1) == 0 && Double.compare(this.side3, triangle.side2) == 0)
+                || (Double.compare(this.side1, triangle.side3) == 0 && Double.compare(this.side2, triangle.side2) == 0 && Double.compare(this.side3, triangle.side1) == 0);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }

@@ -36,4 +36,31 @@ class TriangleTests {
             //OK
         }
     }
+    @Test
+    void testEquality() {
+        var t1 = new Triangle(5.0, 7.0, 4.0);
+        var t2 = new Triangle(5.0, 7.0, 4.0);
+        Assertions.assertEquals(t1, t2);
+    }
+
+    @Test
+    void testEquality1() {
+        var t1 = new Triangle(5.0, 7.0, 4.0);
+        var t2 = new Triangle(5.0, 4.0, 7.0);
+        Assertions.assertEquals(t1, t2);
+    }
+
+    @Test
+    void testEquality2() {
+        var t3 = new Triangle(4.0, 5.0, 7.0);
+        var t4 = new Triangle(4.0, 7.0, 5.0);
+        Assertions.assertEquals(t3, t4);
+    }
+
+    @Test
+    void testEquality3() {
+        var t5 = new Triangle(7.0, 4.0, 5.0);
+        var t6 = new Triangle(7.0, 5.0, 4.0);
+        Assertions.assertEquals(t5, t6);
+    }
 }
