@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d46a24fd-5ceb-473b-9981-7c83bdd78d48" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/GroupCreationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/GroupCreationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/GroupRemovingTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/GroupRemovingTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/addressbook_web_tests/src/test/java/TestBase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,51 +65,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Hello.executor": "Run",
-    "Gradle.GroupCreationTests.executor": "Run",
-    "Gradle.GroupCreationTests.test.executor": "Run",
-    "Gradle.GroupRemovingTests.executor": "Run",
-    "Gradle.SquareTests.canCalculateArea.executor": "Run",
-    "Gradle.SquareTests.canCalculatePerimeter.executor": "Run",
-    "Gradle.SquareTests.executor": "Run",
-    "Gradle.Tests in 'addressbook_web_tests.test'.executor": "Run",
-    "Gradle.TriangleTests.canCalculateArea.executor": "Run",
-    "Gradle.TriangleTests.canCalculatePerimeter.executor": "Run",
-    "Gradle.TriangleTests.executor": "Run",
-    "Gradle.sandbox [:Geometry.main()].executor": "Run",
-    "Gradle.sandbox [:Hello.main()].executor": "Run",
-    "Gradle.sandbox [:Probe.main()].executor": "Run",
-    "Gradle.sandbox [:ru.stqa.geometry.Geometry.main()].executor": "Run",
-    "JUnit.MathTests.executor": "Run",
-    "JUnit.MathTests.testDevideByZero.executor": "Run",
-    "JUnit.RectangleTests.cannotCreateRectangleWithNegativeSide.executor": "Run",
-    "JUnit.RectangleTests.executor": "Run",
-    "JUnit.RectangleTests.testEquality.executor": "Run",
-    "JUnit.RectangleTests.testEquality2.executor": "Run",
-    "JUnit.SquareTests.cannotCreateSquareWithNegativeSide.executor": "Run",
-    "JUnit.SquareTests.testEquality.executor": "Run",
-    "JUnit.SquareTests.testFail.executor": "Run",
-    "JUnit.SquareTests.testNonEquality.executor": "Run",
-    "JUnit.TriangleTests.cannotCreateTriangleWithIncorrectSide.executor": "Run",
-    "JUnit.TriangleTests.cannotCreateTriangleWithNegativeSide.executor": "Run",
-    "JUnit.TriangleTests.executor": "Run",
-    "JUnit.TriangleTests.testEquality.executor": "Run",
-    "JUnit.TriangleTests.testEquality6.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Work/Github/java_for_testers/addressbook_web_tests/src/test/java",
-    "last_opened_file_path": "C:/Work/Github/java_for_testers",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GroupCreationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GroupCreationTests.test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GroupRemovingTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SquareTests.canCalculateArea.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SquareTests.canCalculatePerimeter.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SquareTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'addressbook_web_tests.test'.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleTests.canCalculateArea.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleTests.canCalculatePerimeter.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.sandbox [:Geometry.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.sandbox [:Hello.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.sandbox [:Probe.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.sandbox [:ru.stqa.geometry.Geometry.main()].executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MathTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MathTests.testDevideByZero.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RectangleTests.cannotCreateRectangleWithNegativeSide.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RectangleTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RectangleTests.testEquality.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RectangleTests.testEquality2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SquareTests.cannotCreateSquareWithNegativeSide.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SquareTests.testEquality.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SquareTests.testFail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SquareTests.testNonEquality.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTests.cannotCreateTriangleWithIncorrectSide.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTests.cannotCreateTriangleWithNegativeSide.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTests.testEquality.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTests.testEquality6.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Work/Github/java_for_testers/addressbook_web_tests/src/test/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Work/Github/java_for_testers&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="Square" />
