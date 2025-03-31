@@ -5,14 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class TestBase {
 
-    protected static ApplicationManager appp;
+    protected static ApplicationManager app;
 
     @BeforeEach
     public void setUp() {
-        if (appp == null) {
-            appp = new ApplicationManager();
+        if (app == null) {
+            app = new ApplicationManager();
         }
-        appp.init(System.getProperty("browser", "firefox"));
+        app.init(System.getProperty("browser", "firefox"));
     }
 }
 

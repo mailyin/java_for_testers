@@ -1,18 +1,24 @@
-/*package model;
+package model;
 
-public record ContactData(String First_name, String Last_name, String Address, String Phone_home, String Phone_mobile, String Phone_work, String Phone_fax,
-                          String Email, String Email2, String Email3) {
+public record ContactData(String first_name, String last_name, String address, String phone_mobile, String email) {
 
     public ContactData() {
-        this("", "", "", "", "", "", "", "", "", "");
+        this("", "", "", "", "");
     }
 
-    public ContactData withFirstName(String First_name) {
-        return new ContactData(First_name, this.Last_name, this.Address, this.Phone_home, this.Phone_mobile, this.Phone_work, this.Phone_fax, this.Email,
-                this.Email2, this.Email3);
+    public ContactData withFirstName(String first_name) {
+        return new ContactData(first_name, this.last_name, this.address, this.phone_mobile, this.email);
     }
-    public ContactData withLastName(String Last_name) {
-        return new ContactData(this.First_name, Last_name, this.Address, this.Phone_home, this.Phone_mobile, this.Phone_work, this.Phone_fax, this.Email,
-                this.Email2, this.Email3);
+    public ContactData withLastName(String last_name) {
+        return new ContactData(this.first_name, last_name, this.address, this.phone_mobile, this.email);
     }
-}*/
+    public ContactData withAddress(String address) {
+        return new ContactData(this.first_name, this.last_name, address, this.phone_mobile, this.email);
+    }
+    public ContactData withPhoneMobile(String phone_mobile) {
+        return new ContactData(this.first_name, this.last_name, this.address, phone_mobile, this.email);
+    }
+    public ContactData withEmail(String email) {
+        return new ContactData(this.first_name, this.last_name, this.address, this.phone_mobile, email);
+    }
+}
