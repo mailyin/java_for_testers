@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void removeSelectedContact() {
-        click(By.name("Delete"));
+        click(By.cssSelector("[value='Delete']"));
     }
 
     private void returnToContactsPage() {
@@ -53,8 +53,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void openContactPage() {
-        if (!managerr.isElementPresent(By.name("submit"))) {
-            click(By.linkText("add new"));
+        if (!managerr.isElementPresent(By.name("firstname"))) {
+            click(By.linkText("home"));
         }
     }
 }
