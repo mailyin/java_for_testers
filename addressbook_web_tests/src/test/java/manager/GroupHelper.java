@@ -10,11 +10,6 @@ public class GroupHelper extends HelperBase {
         super(managerr);
     }
 
-    public boolean isGroupPresent() {
-        openGroupsPage();
-        return managerr.isElementPresent(By.name("selected[]"));
-    }
-
     public void createGroup(GroupData group) {
         openGroupsPage();
         initGroupCreation();
@@ -79,5 +74,10 @@ public class GroupHelper extends HelperBase {
         if (!managerr.isElementPresent(By.name("new"))) {
             click(By.linkText("groups"));
         }
+    }
+
+    public int getCount() {
+        openGroupsPage();
+        return managerr.driverr.findElements(By.name("selected[]")).size();
     }
 }
