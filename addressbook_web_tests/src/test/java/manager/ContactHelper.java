@@ -11,7 +11,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public boolean isContactPresent() {
-        openContactPage();
+        openHomePage();
         return managerr.isElementPresent(By.name("selected[]"));
     }
 
@@ -23,7 +23,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void removeContact() {
-        openContactPage();
+        openHomePage();
         selectContact();
         removeSelectedContact();
     }
@@ -54,7 +54,16 @@ public class ContactHelper extends HelperBase {
 
     public void openContactPage() {
         if (!managerr.isElementPresent(By.name("firstname"))) {
-            click(By.linkText("home"));
+            click(By.linkText("add new"));
         }
+    }
+
+    public void openHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public int getContactsCount() {
+        openHomePage();
+        return managerr.driverr.findElements(By.name("selected[]")).size();
     }
 }

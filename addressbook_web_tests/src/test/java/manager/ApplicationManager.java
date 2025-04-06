@@ -26,25 +26,25 @@ public class ApplicationManager {
             driverr.get("http://localhost/addressbook/");
             driverr.manage().window().setSize(new Dimension(1936, 1056));
             driverr.findElement(By.name("user")).click();
-            sessionn().loginn("admin", "secret");
+            session().loginn("admin", "secret");
         }
     }
 
-    public LoginHelper sessionn() {
+    public LoginHelper session() {
         if (sessionn == null) {
             sessionn = new LoginHelper(this);
         }
         return sessionn;
     }
 
-    public GroupHelper groupss() {
+    public GroupHelper groups() {
         if (groupss == null) {
             groupss = new GroupHelper(this);
         }
         return groupss;
     }
 
-    public ContactHelper contactt() {
+    public ContactHelper contact() {
         if (contactt == null) {
             contactt = new ContactHelper(this);
         }
