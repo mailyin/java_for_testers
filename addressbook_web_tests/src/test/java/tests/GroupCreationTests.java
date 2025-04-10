@@ -30,23 +30,22 @@ public class GroupCreationTests extends TestBase {
         return result;
     }
 
-    /*@ParameterizedTest
-    @ValueSource(strings = {"group name", "group name'"})
-    public void canCreateGroup(String namee) {
-        int groupCount = app.groupss().getCount();
-        app.groupss().openGroupsPage();
-        app.groupss().createGroup(new GroupData(namee, "group header", "group footer"));
-        int newGroupCount = app.groupss().getCount();
-        Assertions.assertEquals(groupCount + 1, newGroupCount);
-    }*/
 
     @ParameterizedTest
     @MethodSource("groupProvider")
-    public void canCreateMultipleGroup(GroupData groupp) {
-        int groupCount = app.groups().getGroupsCount();
-        app.groups().createGroup(groupp);
-        int newGroupCount = app.groups().getGroupsCount();
-        Assertions.assertEquals(groupCount + 1, newGroupCount);
+    public void canCreateMultipleGroup(GroupData group) {
+        var oldGroups = app.groups().getList();
+        app.groups().createGroup(group);
+        var newGroups = app.groups().getList();
+        newGroups.sort((o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        });
+        var expectedList = new ArrayList<>(oldGroups);
+        expectedList.add(group.withId(newGroups.get(newGroups.size() - 1).id()).withHeader("").withFooter(""));
+        expectedList.sort((o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        });
+        Assertions.assertEquals(newGroups, expectedList);
     }
 
 
@@ -59,9 +58,9 @@ public class GroupCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("negativeGroupProvider")
     public void canNotCreateGroup(GroupData groupp) {
-        int groupCount = app.groups().getGroupsCount();
+        var oldGroups = app.groups().getList();
         app.groups().createGroup(groupp);
-        int newGroupCount = app.groups().getGroupsCount();
-        Assertions.assertEquals(groupCount, newGroupCount);
+        var newGroups = app.groups().getList();
+        Assertions.assertEquals(newGroups, oldGroups);
     }
 }

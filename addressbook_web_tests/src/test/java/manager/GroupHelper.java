@@ -30,9 +30,9 @@ public class GroupHelper extends HelperBase {
         returnToGroupsPage();
     }
 
-    public void modifyGroup(GroupData modifiedGroup) {
+    public void modifyGroup(GroupData group, GroupData modifiedGroup) {
         openGroupsPage();
-        selectGroup(null);
+        selectGroup(group);
         initGroupModification();
         fillGroupForm(modifiedGroup);
         submitGroupModification();
@@ -100,6 +100,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public List<GroupData> getList() {
+        openGroupsPage();
         var groups = new ArrayList<GroupData>();
         var spans = managerr.driverr.findElements(By.cssSelector("span.group"));
         for (var spann : spans) {
