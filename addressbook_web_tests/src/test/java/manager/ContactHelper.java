@@ -1,8 +1,13 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+import tests.ContactRemovingTests;
 import tests.HelperBase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -19,17 +24,18 @@ public class ContactHelper extends HelperBase {
         openContactPage();
         fillContactForm(contact);
         submitContactCreation();
-        returnToContactsPage();
     }
 
-    public void removeContact() {
+    public void removeContact(ContactData contact) {
         openHomePage();
-        selectContact();
+        selectContact(contact);
         removeSelectedContact();
+        returnToHomePage();
     }
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    private void selectContact(ContactData contact) {
+        //click(By.name("selected[]"));
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     private void removeSelectedContact() {
@@ -42,6 +48,9 @@ public class ContactHelper extends HelperBase {
 
     private void submitContactCreation() {
         click(By.name("submit"));
+    }
+
+    private void returnToHomePage() { click(By.linkText("home"));
     }
 
     private void fillContactForm(ContactData contact1) {
@@ -65,5 +74,19 @@ public class ContactHelper extends HelperBase {
     public int getContactsCount() {
         openHomePage();
         return managerr.driverr.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getList() {
+        openHomePage();
+        var contacts = new ArrayList<ContactData>();
+        var trs = managerr.driverr.findElements(By.name("entry"));
+        for (var tr : trs) {
+            var first = tr.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
+            var last = tr.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
+            var checkbox = tr.findElement(By.name("selected[]"));
+            var id = checkbox.getDomAttribute("value");
+            contacts.add(new ContactData().withId(id).withFirstName(first).withLastName(last));
+        }
+        return contacts;
     }
 }

@@ -17,14 +17,19 @@ public class ContactCreationTests extends TestBase {
                 for (var address : List.of("", "Paris")) {
                     for (var phone_mobile : List.of("", "+33 1 223-322")) {
                         for (var email : List.of("", "jb@rambler.com")) {
-                            result.add(new ContactData(first_name, last_name, address, phone_mobile, email));
+                            result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withAddress(address).withPhoneMobile(phone_mobile).withEmail(email));
                         }
                     }
                 }
             }
         }
         for (int i = 0; i < 5; i++) {
-            result.add(new ContactData(randomString(i * 10), randomString(i * 10), randomString(i * 10), randomString(i * 10),randomString(i * 10)));
+            result.add(new ContactData()
+                    .withFirstName(randomString(i * 10))
+                    .withLastName(randomString(i * 10))
+                    .withAddress(randomString(i * 10))
+                    .withPhoneMobile(randomString(i * 10))
+                    .withEmail(randomString(i * 10)));
         }
         return result;
     }
@@ -32,25 +37,33 @@ public class ContactCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
-        int contactCount = app.contact().getContactsCount();
-        app.contact().createContact(contact);
-        int newContactCount = app.contact().getContactsCount();
-        Assertions.assertEquals(contactCount + 1, newContactCount);
+        var oldContacts = app.contacts().getList();
+        app.contacts().createContact(contact);
+        var newContacts = app.contacts().getList();
+        newContacts.sort((o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        });
+        var expectedList = new ArrayList<>(oldContacts);
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()).withFirstName("").withLastName("").withAddress("").withPhoneMobile("").withEmail(""));
+        expectedList.sort((o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        });
+        Assertions.assertEquals(newContacts, expectedList);
     }
 
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("Jason'", "", "", "", "")));
+                new ContactData("", "Jason'", "", "", "", "")));
         return result;
     }
 
     @ParameterizedTest
     @MethodSource("negativeContactProvider")
-    public void canNotContacts(ContactData contact) {
-        int contactCount = app.contact().getContactsCount();
-        app.contact().createContact(contact);
-        int newContactCount = app.contact().getContactsCount();
-        Assertions.assertEquals(contactCount, newContactCount);
+    public void canNotCreateContacts(ContactData contact) {
+        var oldContacts = app.contacts().getList();
+        app.contacts().createContact(contact);
+        var newContacts = app.contacts().getList();
+        Assertions.assertEquals(newContacts, oldContacts);
     }
 }

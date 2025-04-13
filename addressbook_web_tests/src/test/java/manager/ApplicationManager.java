@@ -44,7 +44,7 @@ public class ApplicationManager {
         return groupss;
     }
 
-    public ContactHelper contact() {
+    public ContactHelper contacts() {
         if (contactt == null) {
             contactt = new ContactHelper(this);
         }
