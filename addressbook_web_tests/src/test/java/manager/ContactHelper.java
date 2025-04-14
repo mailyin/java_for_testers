@@ -1,7 +1,6 @@
 package manager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
 import tests.ContactRemovingTests;
 import tests.HelperBase;
@@ -33,8 +32,14 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        initContactModification(contact);
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        returnToHomePage();
+    }
+
     private void selectContact(ContactData contact) {
-        //click(By.name("selected[]"));
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
@@ -50,7 +55,12 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    private void returnToHomePage() { click(By.linkText("home"));
+    private void returnToHomePage() {
+        click(By.linkText("home"));
+    }
+
+    private void submitContactModification() {
+        click(By.name("update"));
     }
 
     private void fillContactForm(ContactData contact1) {
@@ -59,6 +69,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contact1.address());
         type(By.name("mobile"), contact1.phone_mobile());
         type(By.name("email"), contact1.email());
+    }
+
+    private void initContactModification(ContactData contact) {
+        var tr = managerr.driverr.findElement(By.name("entry"));
+        tr.findElement(By.cssSelector(String.format("a[href*=edit.php?id=%s]", contact.id()))).click();
     }
 
     public void openContactPage() {
