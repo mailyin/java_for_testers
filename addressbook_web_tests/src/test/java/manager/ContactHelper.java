@@ -72,8 +72,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void initContactModification(ContactData contact) {
-        var tr = managerr.driverr.findElement(By.name("entry"));
-        tr.findElement(By.cssSelector(String.format("a[href*=edit.php?id=%s]", contact.id()))).click();
+        click(By.cssSelector(String.format("a[href*='edit.php?id=%s']", contact.id())));
     }
 
     public void openContactPage() {
