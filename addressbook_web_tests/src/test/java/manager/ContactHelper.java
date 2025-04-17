@@ -63,12 +63,13 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    private void fillContactForm(ContactData contact1) {
-        type(By.name("firstname"), contact1.first_name());
-        type(By.name("lastname"), contact1.last_name());
-        type(By.name("address"), contact1.address());
-        type(By.name("mobile"), contact1.phone_mobile());
-        type(By.name("email"), contact1.email());
+    private void fillContactForm(ContactData contact) {
+        type(By.name("firstname"), contact.first_name());
+        type(By.name("lastname"), contact.last_name());
+        type(By.name("address"), contact.address());
+        type(By.name("mobile"), contact.phone_mobile());
+        type(By.name("email"), contact.email());
+        attach(By.name("photo"), contact.photo());
     }
 
     private void initContactModification(ContactData contact) {
