@@ -19,15 +19,6 @@ public class TestBase {
         }
     }
 
-    public static String randomString(int l) {
-        var rnd = new Random();
-        var result = "";
-        for (int i = 0; i < l; i++) {
-            result = result + (char) ('a' + rnd.nextInt(26));
-        }
-        return result;
-    }
-
     public static String randomFile(String dir) {
         var fileNames = new File(dir).list();
         var rnd = new Random();
