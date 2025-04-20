@@ -7,26 +7,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Properties;
+
 public class ApplicationManager {
     public WebDriver driverr;
     private LoginHelper sessionn;
     private GroupHelper groupss;
     private ContactHelper contactt;
+    private Properties propertiess;
 
-    public void init(String browser) {
+    public void  init(String browser, Properties propertiess) {
+        this.propertiess = propertiess;
         if (driverr == null) {
             if ("firefox".equals(browser)) {
                 driverr = new FirefoxDriver();
             } else if ("chrome".equals(browser)) {
                 driverr = new ChromeDriver();
             } else {
-                throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
+                throw new IllegalArgumentException(String.format("Неизвестный браузер %s", browser));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driverr::quit));
-            driverr.get("http://localhost/addressbook/");
-            driverr.manage().window().setSize(new Dimension(1936, 1056));
+            driverr.get(propertiess.getProperty("web.baseUrl"));
+            driverr.manage().window().setSize(new Dimension(
+                    Integer.parseInt(propertiess.getProperty("web.dimensionWidth")),
+                    Integer.parseInt(propertiess.getProperty("web.dimensionHeight"))));
             driverr.findElement(By.name("user")).click();
-            session().loginn("admin", "secret");
+            session().loginn(propertiess.getProperty("web.username"), propertiess.getProperty("web.password"));
         }
     }
 
