@@ -21,13 +21,13 @@ public class GroupCreationTests extends TestBase {
 
     public static List<GroupData> groupProvider() throws IOException {
         var result = new ArrayList<GroupData>();
-        /*for (var name : List.of("", "group name")) {
+        for (var name : List.of("", "group name")) {
             for (var header : List.of("", "group header")) {
                 for (var footer: List.of("", "group footer")) {
                     result.add(new GroupData().withName(name).withHeader(header).withFooter(footer));
                 }
             }
-        }*/
+        }
         var json = Files.readString(Paths.get("groups.json"));
         ObjectMapper mapper = new ObjectMapper();
         var value = mapper.readValue(json, new TypeReference<List<GroupData>>() {});

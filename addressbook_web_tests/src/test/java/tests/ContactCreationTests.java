@@ -1,17 +1,23 @@
 package tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    public static List<ContactData> contactProvider() {
+    public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
         for (var first_name : List.of("", "Jason")) {
             for (var last_name : List.of("", "Bourne")) {
@@ -19,16 +25,11 @@ public class ContactCreationTests extends TestBase {
                     result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withPhoto(photo));
                 }
             }
-            for (int i = 0; i < 5; i++) {
-                result.add(new ContactData()
-                        .withFirstName(CommonFunctions.randomString(i * 10))
-                        .withLastName(CommonFunctions.randomString(i * 10))
-                        .withAddress(CommonFunctions.randomString(i * 10))
-                        .withPhoneMobile(CommonFunctions.randomString(i * 10))
-                        .withEmail(CommonFunctions.randomString(i * 10))
-                        .withPhoto(randomFile("src/test/resources/images")));
-            }
         }
+        var json = Files.readString(Paths.get("contacts.json"));
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {});
+        result.addAll(value);
         return result;
     }
 
