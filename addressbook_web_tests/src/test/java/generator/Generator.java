@@ -85,20 +85,18 @@ public class Generator {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
             var json = mapper.writeValueAsString(data);
-            try (var writer = new FileWriter(output)) { //try здесь для закрытия файла после записи в него
+            //try здесь для закрытия файла после записи в него
+            try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
         }
-
-        if ("yaml".equals(format)) {
+        else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
         }
-
-        if ("xml".equals(format)) {
+        else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
-
         } else {
             throw new IllegalArgumentException("Неизвестный формат данных " + format);
         }
