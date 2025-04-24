@@ -36,9 +36,9 @@ public class ContactCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
-        var oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
-        var newContacts = app.contacts().getList();
+        var newContacts = app.hbm().getContactList();
         newContacts.sort((o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         });
