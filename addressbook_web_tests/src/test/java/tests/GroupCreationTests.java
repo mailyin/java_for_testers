@@ -57,7 +57,7 @@ public class GroupCreationTests extends TestBase {
         expectedList.sort((o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         });
-        Assertions.assertEquals(newGroups, expectedList);
+        Assertions.assertEquals(expectedList, newGroups);
     }
 
 
