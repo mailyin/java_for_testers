@@ -21,14 +21,17 @@ public class ContactCreationTests extends TestBase {
         var result = new ArrayList<ContactData>();
         for (var first_name : List.of("", "Jason")) {
             for (var last_name : List.of("", "Bourne")) {
-                for (var photo : List.of("src/test/resources/images/avatar.jpg", "src/test/resources/images/avatar.jpg")) {
-                    result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withPhoto(photo));
+                for (var home_page : List.of("", "treadstone.com")) {
+//                for (var photo : List.of("src/test/resources/images/avatar.jpg", "src/test/resources/images/avatar.jpg")) {
+                    result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withHomePage(home_page));
                 }
             }
         }
+
         var json = Files.readString(Paths.get("contacts.json"));
         ObjectMapper mapper = new ObjectMapper();
-        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {});
+        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {
+        });
         result.addAll(value);
         return result;
     }
@@ -43,7 +46,7 @@ public class ContactCreationTests extends TestBase {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         });
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()).withPhoto(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
         expectedList.sort((o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         });
@@ -53,7 +56,7 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("", "Jason'", "", "", "", "", "")));
+                new ContactData("", "Jason'", "", "", "", "", "", "", "")));
         return result;
     }
 

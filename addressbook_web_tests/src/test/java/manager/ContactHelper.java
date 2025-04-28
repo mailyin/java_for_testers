@@ -33,6 +33,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        openHomePage();
         initContactModification(contact);
         fillContactForm(modifiedContact);
         submitContactModification();
@@ -69,7 +70,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contact.address());
         type(By.name("mobile"), contact.phone_mobile());
         type(By.name("email"), contact.email());
-        attach(By.name("photo"), contact.photo());
+        //attach(By.name("photo"), contact.photo());
+        type(By.name("nickname"), contact.nick_name());
+        type(By.name("company"), contact.company());
+        type(By.name("homepage"), contact.home_page());
     }
 
     private void initContactModification(ContactData contact) {

@@ -61,9 +61,9 @@ public class HibernateHelper extends HelperBase {
         return result;
     }
 
-    //Преобразовывает ContactData в GroupRecord
+    //Преобразовывает ContactData в ContactRecord
     private static ContactData convert(ContactRecord record) {
-        return new ContactData("" + record.id, record.first_name, record.last_name, record.address, record.phone_mobile, record.email, record.photo);
+        return new ContactData("" + record.id, record.first_name, record.last_name, record.address, record.phone_mobile, record.email, record.nickname, record.company, record.home_page);
     }
 
     private static ContactRecord convert(ContactData data) {
@@ -71,7 +71,7 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.first_name(), data.last_name(), data.address(), data.phone_mobile(), data.email(), data.photo());
+        return new ContactRecord(Integer.parseInt(id), data.first_name(), data.last_name(), data.address(), data.phone_mobile(), data.email(), data.nick_name(), data.company(), data.home_page());
     }
 
 

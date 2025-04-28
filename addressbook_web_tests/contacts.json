@@ -5,21 +5,27 @@
   "address" : "",
   "phone_mobile" : "",
   "email" : "",
-  "photo" : "src\\test\\resources\\images\\avatar.jpg"
+  "nick_name" : "",
+  "company" : "",
+  "home_page" : ""
 }, {
   "id" : "",
-  "first_name" : "sbypygnnom",
-  "last_name" : "bawyxbffsa",
-  "address" : "ezknebbcwp",
-  "phone_mobile" : "nooctjiydi",
-  "email" : "axafqgzsmc",
-  "photo" : "src\\test\\resources\\images\\b1.jpg"
+  "first_name" : "gmhmeapgsc",
+  "last_name" : "bmiarqiztr",
+  "address" : "asygwfyntz",
+  "phone_mobile" : "pnxhjhgrdg",
+  "email" : "nspiytuahf",
+  "nick_name" : "ekladpgswz",
+  "company" : "zgzhqdfzdl",
+  "home_page" : "bonozkvuib"
 }, {
   "id" : "",
-  "first_name" : "ursiqpuwkzhogqoiwzbd",
-  "last_name" : "jjruokqjuucmtrmnaeuu",
-  "address" : "jvmirdaydwpqxdvrirla",
-  "phone_mobile" : "npzhzrinqrlimviydbgi",
-  "email" : "iuwtjxqamaybmbejkxvw",
-  "photo" : "src\\test\\resources\\images\\b3.jpg"
+  "first_name" : "mkemphmigqyxsuvjhegx",
+  "last_name" : "ujbikghynfcilwzymorf",
+  "address" : "csjojmarbjkwmylkjmfj",
+  "phone_mobile" : "lytkhrfakqrmbveyvjqr",
+  "email" : "tdmrylmwdimiqmfahasz",
+  "nick_name" : "fhyncrshfenvlkjzvdho",
+  "company" : "xwveibebncburthkrhpu",
+  "home_page" : "mqvmoixkunatsnkfjntd"
 } ]

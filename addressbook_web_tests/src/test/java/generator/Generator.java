@@ -75,7 +75,10 @@ public class Generator {
                     .withAddress(CommonFunctions.randomString(i * 10))
                     .withPhoneMobile(CommonFunctions.randomString(i * 10))
                     .withEmail(CommonFunctions.randomString(i * 10))
-                    .withPhoto(randomFile("src/test/resources/images")));
+                    //.withPhoto(randomFile("src/test/resources/images")));
+                    .withNickName(CommonFunctions.randomString(i * 10))
+                    .withCompany(CommonFunctions.randomString(i * 10))
+                    .withHomePage(CommonFunctions.randomString(i * 10)));
         }
         return result;
     }
@@ -89,12 +92,10 @@ public class Generator {
             try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
-        }
-        else if ("yaml".equals(format)) {
+        } else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
-        }
-        else if ("xml".equals(format)) {
+        } else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {
