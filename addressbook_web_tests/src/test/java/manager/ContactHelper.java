@@ -1,12 +1,15 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import tests.ContactRemovingTests;
 import tests.HelperBase;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ContactHelper extends HelperBase {
 
@@ -23,6 +26,17 @@ public class ContactHelper extends HelperBase {
         openContactPage();
         fillContactForm(contact);
         submitContactCreation();
+    }
+
+    public void createContactInGroup(ContactData contact GroupData group) {
+        openContactPage();
+        fillContactForm(contact);
+        selectGroup(group);
+        submitContactCreation();
+    }
+
+    private void selectGroup(GroupData group) {
+        new Select(managerr.driverr.findElement(By.name("new_group"))).selectByValue(group.id());
     }
 
     public void removeContact(ContactData contact) {

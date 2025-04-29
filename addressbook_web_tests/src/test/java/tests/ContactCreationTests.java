@@ -6,6 +6,7 @@ import common.CommonFunctions;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -53,6 +54,26 @@ public class ContactCreationTests extends TestBase {
         Assertions.assertEquals(expectedList, newContacts);
     }
 
+    @Test
+    public void canCreateContact() {
+        var contact = new ContactData()
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                //.withPhoto(randomFile("src/test/resources/images"));
+                .withHomePage(CommonFunctions.randomString(10));
+        app.contacts().createContact(contact);
+    }
+
+    @Test
+    void canCreateContactInGroup() {
+        var contact = new ContactData()
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                //.withPhoto(randomFile("src/test/resources/images"));
+                .withHomePage(CommonFunctions.randomString(10));
+        app.contacts().createContactInGroup(contact, group);
+    }
+
 
     public static List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
@@ -63,9 +84,9 @@ public class ContactCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("negativeContactProvider")
     public void canNotCreateContacts(ContactData contact) {
-        var oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
-        var newContacts = app.contacts().getList();
+        var newContacts = app.hbm().getContactList();
         Assertions.assertEquals(newContacts, oldContacts);
     }
 }
