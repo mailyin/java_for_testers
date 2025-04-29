@@ -28,14 +28,14 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
     }
 
-    public void createContactInGroup(ContactData contact GroupData group) {
+    public void createContactInGroup(ContactData contact, GroupData group) {
         openContactPage();
         fillContactForm(contact);
         selectGroup(group);
         submitContactCreation();
     }
 
-    private void selectGroup(GroupData group) {
+    public void selectGroup(GroupData group) {
         new Select(managerr.driverr.findElement(By.name("new_group"))).selectByValue(group.id());
     }
 

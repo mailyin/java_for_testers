@@ -71,7 +71,15 @@ public class ContactCreationTests extends TestBase {
                 .withLastName(CommonFunctions.randomString(10))
                 //.withPhoto(randomFile("src/test/resources/images"));
                 .withHomePage(CommonFunctions.randomString(10));
+        if (app.hbm().getGroupsCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+
+        var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContactInGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
     }
 
 

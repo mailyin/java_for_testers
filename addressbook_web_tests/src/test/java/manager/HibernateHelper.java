@@ -50,8 +50,6 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
-
     //Преобразовывает ContactRecord в ContactData
     static List<ContactData> convertContactList(List<ContactRecord> records) {
         List<ContactData> result = new ArrayList<>();
@@ -75,9 +73,6 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
-
-
     public List<GroupData> getGroupList() {
         return convertGroupList((List<GroupRecord>) sessionFactory.fromSession(session -> {
             return session.createQuery("from GroupRecord", GroupRecord.class).list();
@@ -99,8 +94,6 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
-
     public List<ContactData> getContactList() {
         return convertContactList((List<ContactRecord>) sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
@@ -118,6 +111,12 @@ public class HibernateHelper extends HelperBase {
             session.getTransaction().begin();
             session.persist(convert(contactData));
             session.getTransaction().commit();
+        });
+    }
+
+    public List<ContactData> getContactsInGroup(GroupData group) {
+        return sessionFactory.fromSession(session -> {
+            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
         });
     }
 }
