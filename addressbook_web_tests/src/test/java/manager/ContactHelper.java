@@ -46,6 +46,21 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void addContactToGroup(ContactData contact, GroupData group) {
+        openContactPage();
+        selectContact(contact);
+        addSelectedContactToGroup(group);
+        returnToHomePage();
+    }
+
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        openContactPage();
+        selectGroup(group);
+        selectContact(contact);
+        removeSelectedContactFromGroup();
+        returnToHomePage();
+    }
+
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
         initContactModification(contact);
@@ -58,8 +73,16 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
+    private void addSelectedContactToGroup(GroupData group) {
+        new Select(managerr.driverr.findElement(By.name("to_group"))).selectByValue(group.id());
+    }
+
     private void removeSelectedContact() {
         click(By.cssSelector("[value='Delete']"));
+    }
+
+    private void removeSelectedContactFromGroup() {
+        click(By.cssSelector("[value='Remove from \"group name\"']"));
     }
 
     private void returnToContactsPage() {
