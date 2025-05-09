@@ -75,7 +75,6 @@ public class ContactCreationTests extends TestBase {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
-
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContactInGroup(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);

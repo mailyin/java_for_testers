@@ -1,6 +1,8 @@
 package tests;
 
+import common.CommonFunctions;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +40,15 @@ public class ContactModificationTests extends TestBase {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
                     "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com"));
         }
-        var oldContacts = app.hbm().getContactList();
-        var rnd = new Random();
-        var index = rnd.nextInt(oldContacts.size());
-        app.contacts().addContactToGroup(oldContacts.get(index));
-        var newContacts = app.hbm().getContactList();
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.remove(index);
-        Assertions.assertEquals(newContacts, expectedList);
+        if (app.hbm().getGroupsCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var contact = app.hbm().getContactList().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.contacts().addContactToGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
     }
 
     @Test
@@ -54,13 +57,17 @@ public class ContactModificationTests extends TestBase {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
                     "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com"));
         }
-        var oldContacts = app.hbm().getContactList();
-        var rnd = new Random();
-        var index = rnd.nextInt(oldContacts.size());
-        app.contacts().removeContactFromGroup(oldContacts.get(index));
-        var newContacts = app.hbm().getContactList();
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.remove(index);
-        Assertions.assertEquals(newContacts, expectedList);
+        if (app.hbm().getGroupsCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var contact = app.hbm().getContactList().get(0);
+//Предварительное добавление контакта в группу для последующего удаления из группы
+        app.contacts().addContactToGroup(contact, group);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+
+        app.contacts().removeContactFromGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
     }
 }
