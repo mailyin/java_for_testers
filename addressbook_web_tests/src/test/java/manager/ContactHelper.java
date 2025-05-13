@@ -48,6 +48,7 @@ public class ContactHelper extends HelperBase {
 
     public void addContactToGroup(ContactData contact, GroupData group) {
         openHomePage();
+        selectGroupFilter();
         selectContact(contact);
         selectGroupToAdd(group);
         addSelectedContactToGroup(group);
@@ -72,6 +73,10 @@ public class ContactHelper extends HelperBase {
 
     private void selectContact(ContactData contact) {
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+    }
+
+    private void selectGroupFilter() {
+        new Select(managerr.driverr.findElement(By.name("group"))).selectByValue("[none]");
     }
 
     private void selectGroupToAdd(GroupData group) {
