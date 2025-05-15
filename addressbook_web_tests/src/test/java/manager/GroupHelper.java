@@ -7,6 +7,7 @@ import tests.HelperBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -100,14 +101,14 @@ public class GroupHelper extends HelperBase {
 
     public List<GroupData> getList() {
         openGroupsPage();
-        var groups = new ArrayList<GroupData>();
         var spans = managerr.driverr.findElements(By.cssSelector("span.group"));
-        for (var spann : spans) {
-            var name = spann.getText();
-            var checkbox = spann.findElement(By.name("selected[]"));
-            var id = checkbox.getDomAttribute("value");
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-        return groups;
+        return spans.stream()
+                .map(span -> {
+                    var name = span.getText();
+                    var checkbox = span.findElement(By.name("selected[]"));
+                    var id = checkbox.getDomAttribute("value");
+                    return new GroupData().withId(id).withName(name);
+                })
+                .collect(Collectors.toList());
     }
 }
