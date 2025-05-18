@@ -34,6 +34,14 @@ public class ContactRecord {
     public String company;
     @Column(name = "homepage")
     public String home_page;
+    @Column(name = "home")
+    public String home;
+    @Column(name = "mobile")
+    public String mobile;
+    @Column(name = "work")
+    public String work;
+    @Column(name = "phone2")
+    public String phone2;
 
     public Date deprecated = new Date();
 

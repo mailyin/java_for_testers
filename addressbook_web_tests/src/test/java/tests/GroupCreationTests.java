@@ -14,7 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -37,7 +39,7 @@ public class GroupCreationTests extends TestBase {
         return result;
     }
 
-    public static Stream<GroupData> singleRandomGroup() throws IOException {
+    public static Stream<GroupData> RandomGroups() throws IOException {
         Supplier<GroupData> randomGroup = () -> new GroupData()
                 .withName(CommonFunctions.randomString( 10))
                 .withHeader(CommonFunctions.randomString( 20))
@@ -46,21 +48,16 @@ public class GroupCreationTests extends TestBase {
     }
 
     @ParameterizedTest
-    @MethodSource("singleRandomGroup")
+    @MethodSource("RandomGroups")
     public void canCreateGroup(GroupData group) {
         var oldGroups = app.hbm().getGroupList();
         app.groups().createGroup(group);
         var newGroups = app.hbm().getGroupList();
-        newGroups.sort((o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        });
-        var maxId = newGroups.get(newGroups.size() - 1).id();
+        var extraGroups = newGroups.stream().filter(g -> ! oldGroups.contains(g)).toList(); //Содержит только те группы, которых не было в старом списке, но которые есть в новом
+        var newId = extraGroups.get(0).id();
         var expectedList = new ArrayList<>(oldGroups);
-        expectedList.add(group.withId(maxId));
-        expectedList.sort((o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        });
-        Assertions.assertEquals(expectedList, newGroups);
+        expectedList.add(group.withId(newId));
+        Assertions.assertEquals(Set.copyOf(expectedList), Set.copyOf(newGroups));//Сравниваем списки, предварительно преобразовывая их в множества (так как для множества не имеет значения в каком порядке располагаются созданные группы)
     }
 
 

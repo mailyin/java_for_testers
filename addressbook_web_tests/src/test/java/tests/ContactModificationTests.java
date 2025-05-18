@@ -1,6 +1,5 @@
 package tests;
 
-import common.CommonFunctions;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +14,7 @@ public class ContactModificationTests extends TestBase {
     void canModifyContact() {
         if (app.contacts().getContactsCount() == 0) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
-                    "jb@rambler.com"/*, "src/test/resources/images/avatar.jpg")*/, "Foma Kiniaev", "CIA", "treadstone.com"));
+                    "jb@rambler.com"/*, "src/test/resources/images/avatar.jpg")*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
@@ -38,7 +37,7 @@ public class ContactModificationTests extends TestBase {
     public void canAddContactToGroup() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
-                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com"));
+                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         if (app.hbm().getGroupsCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
@@ -55,7 +54,7 @@ public class ContactModificationTests extends TestBase {
     public void canRemoveContactFromGroup() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
-                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com"));
+                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         if (app.hbm().getGroupsCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));

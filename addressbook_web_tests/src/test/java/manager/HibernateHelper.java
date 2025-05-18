@@ -9,7 +9,6 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import tests.HelperBase;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +53,19 @@ public class HibernateHelper extends HelperBase {
 
     //Преобразовывает ContactData в ContactRecord
     private static ContactData convert(ContactRecord record) {
-        return new ContactData("" + record.id, record.first_name, record.last_name, record.address, record.phone_mobile, record.email, record.nickname, record.company, record.home_page);
+        return new ContactData().withId("" + record.id)
+                .withFirstName(record.first_name)
+                .withLastName(record.last_name)
+                .withAddress(record.address)
+                .withPhoneMobile(record.phone_mobile)
+                .withEmail(record.email)
+                .withNickName(record.nickname)
+                .withCompany(record.company)
+                .withHomePage(record.home_page)
+                .withHome(record.home)
+                .withMobile(record.mobile)
+                .withWork(record.work)
+                .withPhone2(record.phone2);
     }
 
     private static ContactRecord convert(ContactData data) {
