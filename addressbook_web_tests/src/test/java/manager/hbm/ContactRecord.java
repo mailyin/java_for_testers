@@ -22,8 +22,6 @@ public class ContactRecord {
     public String last_name;
     @Column(name = "address")
     public String address;
-    @Column(name = "mobile")
-    public String phone_mobile;
     @Column(name = "email")
     public String email;
     //    @Column(name = "photo")
@@ -53,7 +51,6 @@ public class ContactRecord {
         this.first_name = first_name;
         this.last_name = last_name;
         this.address = address;
-        this.phone_mobile = phone_mobile;
         this.email = email;
 //        this.photo = photo;
         this.nickname = nickname;

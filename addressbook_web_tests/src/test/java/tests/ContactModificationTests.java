@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     void canModifyContact() {
         if (app.contacts().getContactsCount() == 0) {
-            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
+            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris",
                     "jb@rambler.com"/*, "src/test/resources/images/avatar.jpg")*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         var oldContacts = app.hbm().getContactList();
@@ -36,7 +36,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void canAddContactToGroup() {
         if (!app.contacts().isContactPresent()) {
-            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
+            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris",
                     "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         if (app.hbm().getGroupsCount() == 0) {
@@ -53,7 +53,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void canRemoveContactFromGroup() {
         if (!app.contacts().isContactPresent()) {
-            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "+33 1 223-322",
+            app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris",
                     "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "Foma Kiniaev", "CIA", "treadstone.com", "", "", "", ""));
         }
         if (app.hbm().getGroupsCount() == 0) {

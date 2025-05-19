@@ -3,6 +3,7 @@ package collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,14 @@ public class CollectionTests {
 
         set.add("d");
         Assertions.assertEquals(4, set.size());
+    }
 
+    @Test
+    void testMap () {
+        var digits = new HashMap<Character, String>();
+        digits.put('1', "one");
+        digits.put('2', "two");
+        digits.put('3', "three");
     }
 
 }

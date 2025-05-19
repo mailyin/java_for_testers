@@ -3,12 +3,15 @@ package manager;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import tests.ContactRemovingTests;
 import tests.HelperBase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ContactHelper extends HelperBase {
@@ -119,7 +122,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.first_name());
         type(By.name("lastname"), contact.last_name());
         type(By.name("address"), contact.address());
-        type(By.name("mobile"), contact.phone_mobile());
+        //type(By.name("mobile"), contact.phone_mobile());
         type(By.name("email"), contact.email());
         //attach(By.name("photo"), contact.photo());
         type(By.name("nickname"), contact.nick_name());
@@ -163,5 +166,16 @@ public class ContactHelper extends HelperBase {
     public String getPhones(ContactData contact) {
         return managerr.driverr.findElement(By.xpath(
                 String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
+    }
+
+    public Map<String, String> getPhones() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = managerr.driverr.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getDomAttribute("id");
+            var phones = row.findElements(By.tagName("td")).get(5).getText();
+            result.put(id, phones);
+        }
+        return result;
     }
 }
