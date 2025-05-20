@@ -5,7 +5,6 @@ import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import tests.ContactRemovingTests;
 import tests.HelperBase;
 
 import java.util.ArrayList;
@@ -128,6 +127,10 @@ public class ContactHelper extends HelperBase {
         type(By.name("nickname"), contact.nick_name());
         type(By.name("company"), contact.company());
         type(By.name("homepage"), contact.home_page());
+        type(By.name("home"), contact.home());
+        type(By.name("mobile"), contact.mobile());
+        type(By.name("work"), contact.work());
+        type(By.name("fax"), contact.fax());
     }
 
     private void initContactModification(ContactData contact) {

@@ -38,15 +38,16 @@ public class ContactRecord {
     public String mobile;
     @Column(name = "work")
     public String work;
-    @Column(name = "phone2")
-    public String phone2;
+    @Column(name = "fax")
+    public String fax;
 
     public Date deprecated = new Date();
 
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String first_name, String last_name, String address, String phone_mobile, String email, String nickname, String company, String home_page) {
+    public ContactRecord(int id, String first_name, String last_name, String address, String email, String nickname, String company, String home_page,
+                         String home, String mobile, String work, String fax) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -56,5 +57,9 @@ public class ContactRecord {
         this.nickname = nickname;
         this.company = company;
         this.home_page = home_page;
+        this.home = home;
+        this.mobile = mobile;
+        this.work = work;
+        this.fax = fax;
     }
 }

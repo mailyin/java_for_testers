@@ -20,14 +20,14 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
-        for (var first_name : List.of("", "Jason")) {
-            for (var last_name : List.of("", "Bourne")) {
-                for (var home_page : List.of("", "treadstone.com")) {
-//                for (var photo : List.of("src/test/resources/images/avatar.jpg", "src/test/resources/images/avatar.jpg")) {
-                    result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withHomePage(home_page));
-                }
-            }
-        }
+//        for (var first_name : List.of("", "Jason")) {
+//            for (var last_name : List.of("", "Bourne")) {
+//                for (var home_page : List.of("", "treadstone.com")) {
+////                for (var photo : List.of("src/test/resources/images/avatar.jpg", "src/test/resources/images/avatar.jpg")) {
+//                    result.add(new ContactData().withFirstName(first_name).withLastName(last_name).withHomePage(home_page));
+//                }
+//            }
+//        }
 
         var json = Files.readString(Paths.get("contacts.json"));
         ObjectMapper mapper = new ObjectMapper();

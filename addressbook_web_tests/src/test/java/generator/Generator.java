@@ -74,12 +74,15 @@ public class Generator {
                 .withFirstName(CommonFunctions.randomString(10))
                 .withLastName(CommonFunctions.randomString(10))
                 .withAddress(CommonFunctions.randomString(10))
-                .withPhoneMobile(CommonFunctions.randomString(10))
                 .withEmail(CommonFunctions.randomString(10))
                 //.withPhoto(randomFile("src/test/resources/images")));
                 .withNickName(CommonFunctions.randomString(10))
                 .withCompany(CommonFunctions.randomString(10))
-                .withHomePage(CommonFunctions.randomString(10)));
+                .withHomePage(CommonFunctions.randomString(10))
+                .withHome(CommonFunctions.randomNumberString(7))
+                .withMobile(CommonFunctions.randomNumberString(7))
+                .withWork(CommonFunctions.randomNumberString(7))
+                .withfax(CommonFunctions.randomNumberString(7)));
     }
 
     private void save(Object data) throws IOException {
