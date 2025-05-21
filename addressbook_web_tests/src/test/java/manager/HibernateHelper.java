@@ -58,6 +58,8 @@ public class HibernateHelper extends HelperBase {
                 .withLastName(record.last_name)
                 .withAddress(record.address)
                 .withEmail(record.email)
+                .withEmail2(record.email2)
+                .withEmail3(record.email3)
                 .withNickName(record.nickname)
                 .withCompany(record.company)
                 .withHomePage(record.home_page)
@@ -73,7 +75,7 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.first_name(), data.last_name(), data.address(), data.email(), data.nick_name(), data.company(), data.home_page(), data.home(), data.mobile(), data.work(), data.fax());
+        return new ContactRecord(Integer.parseInt(id), data.first_name(), data.last_name(), data.address(), data.email(), data.email2(), data.email3(), data.nick_name(), data.company(), data.home_page(), data.home(), data.mobile(), data.work(), data.fax());
     }
 
 

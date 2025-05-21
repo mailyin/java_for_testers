@@ -75,6 +75,8 @@ public class Generator {
                 .withLastName(CommonFunctions.randomString(10))
                 .withAddress(CommonFunctions.randomString(10))
                 .withEmail(CommonFunctions.randomString(10))
+                .withEmail2(CommonFunctions.randomString(10))
+                .withEmail3(CommonFunctions.randomString(10))
                 //.withPhoto(randomFile("src/test/resources/images")));
                 .withNickName(CommonFunctions.randomString(10))
                 .withCompany(CommonFunctions.randomString(10))

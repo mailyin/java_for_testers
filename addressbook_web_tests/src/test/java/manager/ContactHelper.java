@@ -123,6 +123,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contact.address());
         //type(By.name("mobile"), contact.phone_mobile());
         type(By.name("email"), contact.email());
+        type(By.name("email2"), contact.email2());
+        type(By.name("email3"), contact.email3());
         //attach(By.name("photo"), contact.photo());
         type(By.name("nickname"), contact.nick_name());
         type(By.name("company"), contact.company());
@@ -169,6 +171,28 @@ public class ContactHelper extends HelperBase {
     public String getPhones(ContactData contact) {
         return managerr.driverr.findElement(By.xpath(
                 String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
+    }
+
+    public Object getAddress() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = managerr.driverr.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getDomAttribute("id");
+            var address = row.findElements(By.tagName("td")).get(3).getText();
+            result.put(id, address);
+        }
+        return result;
+    }
+
+    public Object getEmails() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = managerr.driverr.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getDomAttribute("id");
+            var emails = row.findElements(By.tagName("td")).get(4).getText();
+            result.put(id, emails);
+        }
+        return result;
     }
 
     public Map<String, String> getPhones() {
