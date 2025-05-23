@@ -132,7 +132,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contact.home());
         type(By.name("mobile"), contact.mobile());
         type(By.name("work"), contact.work());
-        type(By.name("fax"), contact.fax());
     }
 
     private void initContactModification(ContactData contact) {

@@ -83,8 +83,7 @@ public class Generator {
                 .withHomePage(CommonFunctions.randomString(10))
                 .withHome(CommonFunctions.randomNumberString(7))
                 .withMobile(CommonFunctions.randomNumberString(7))
-                .withWork(CommonFunctions.randomNumberString(7))
-                .withfax(CommonFunctions.randomNumberString(7)));
+                .withWork(CommonFunctions.randomNumberString(7)));
     }
 
     private void save(Object data) throws IOException {

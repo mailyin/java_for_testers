@@ -14,7 +14,7 @@ public class ContactInfoTests extends TestBase {
     void testAddress() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris",
-                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "jb@google.com", "jb@mail.ru", "treadstone.com", "223322", "", "456123", "", "Foma Kiniaev", "CIA"));
+                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "jb@google.com", "jb@mail.ru", "treadstone.com", "223322", "", "456123", "Foma Kiniaev", "CIA"));
         }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(contact -> contact.id(), contact ->
@@ -31,8 +31,9 @@ public class ContactInfoTests extends TestBase {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris", "jb@rambler.com"
                     /*,"src/test/resources/images/avatar.jpg"*/, "jb@google.com", "jb@mail.ru", "treadstone.com",
-                    "223322", "", "456123", "", "Foma Kiniaev", "CIA"));
+                    "223322", "555555", "456123", "Foma Kiniaev", "CIA"));
         }
+        app.contacts().openHomePage();
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(contact -> contact.id(), contact ->
                 Stream.of(contact.email(), contact.email2(), contact.email3())
@@ -47,11 +48,12 @@ public class ContactInfoTests extends TestBase {
     void testPhones() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(new ContactData("", "Jason", "Bourne", "Paris",
-                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "jb@google.com", "jb@mail.ru", "treadstone.com", "223322", "349242", "456123", "137654", "Foma Kiniaev", "CIA"));
+                    "jb@rambler.com"/*,"src/test/resources/images/avatar.jpg"*/, "jb@google.com", "jb@mail.ru", "treadstone.com", "223322", "349242", "456123", "Foma Kiniaev", "CIA"));
         }
+        app.contacts().openHomePage();
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(contact -> contact.id(), contact ->
-                Stream.of(contact.home(), contact.mobile(), contact.work(), contact.fax())
+                Stream.of(contact.home(), contact.mobile(), contact.work())
                         .filter(s -> s != null && !"".equals(s))
                         .collect(Collectors.joining("\n"))
         ));
