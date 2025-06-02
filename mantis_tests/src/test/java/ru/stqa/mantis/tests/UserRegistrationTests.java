@@ -11,7 +11,7 @@ public class UserRegistrationTests extends TestBase {
 
     @Test
     void canRegisterUser() {
-//Содаём ящик Пользователя на почтовом сервере
+//Содаём ящик Пользователя на почтовом сервере через CLI James
         var name = CommonFunctions.randomString(8);
         var email = String.format("%s@localhost", name);
         var password = CommonFunctions.randomString(8);
@@ -22,6 +22,36 @@ public class UserRegistrationTests extends TestBase {
                 .withEmail(email)
                 .withPassword(password);
         app.session().createUser(user);
+//Ждём почту и извлекаем ссылку из письма
+        var message = app.mail().receive(email, password, Duration.ofSeconds(10));
+        var text = message.get(0).content();
+        var pattern = Pattern.compile("http://\\S*");
+        var matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            var url = text.substring(matcher.start(), matcher.end());
+            System.out.println(url);
+//Проходим по ссылке
+            app.driver().get(url);
+        }
+//Завершаем регистрацию
+        app.session().completionRegistration(user);
+//Проверяем, что созданный Пользователь может залогиниться
+        app.http().login(name, password);
+    }
+
+    @Test
+    void canRegisterUserByRestApi() {
+//Содаём ящик Пользователя на почтовом сервере через API James
+        var name = CommonFunctions.randomString(8);
+        var email = String.format("%s@localhost", name);
+        var password = CommonFunctions.randomString(8);
+        app.jamesApi().addUser(email, password);
+//Регистрируем Пользователя в Mantis через API
+        var user = new UserData()
+                .withUsername(name)
+                .withEmail(email)
+                .withPassword(password);
+        app.rest().createUser(user);
 //Ждём почту и извлекаем ссылку из письма
         var message = app.mail().receive(email, password, Duration.ofSeconds(10));
         var text = message.get(0).content();
