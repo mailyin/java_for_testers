@@ -5,8 +5,13 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 public class ApplicationManager {
@@ -18,13 +23,22 @@ public class ApplicationManager {
     private HibernateHelper hbm;
     private Properties propertiess;
 
-    public void  init(String browser, Properties propertiess) {
+    public void init(String browser, Properties propertiess) throws MalformedURLException {
         this.propertiess = propertiess;
         if (driverr == null) {
+            var seleniumServer = propertiess.getProperty("seleniumServer");
             if ("firefox".equals(browser)) {
-                driverr = new FirefoxDriver();
+                if (seleniumServer != null) {
+                    driverr = new RemoteWebDriver(new URL(seleniumServer), new FirefoxOptions());
+                } else {
+                    driverr = new FirefoxDriver();
+                }
             } else if ("chrome".equals(browser)) {
-                driverr = new ChromeDriver();
+                if (seleniumServer != null) {
+                    driverr = new RemoteWebDriver(new URL(seleniumServer), new ChromeOptions());
+                } else {
+                    driverr = new ChromeDriver();
+                }
             } else {
                 throw new IllegalArgumentException(String.format("Неизвестный браузер %s", browser));
             }
