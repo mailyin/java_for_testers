@@ -65,4 +65,5 @@ public class ContactRecord {
         this.mobile = mobile;
         this.work = work;
     }
+
 }

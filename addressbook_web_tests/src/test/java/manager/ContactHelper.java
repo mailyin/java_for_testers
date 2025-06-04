@@ -50,7 +50,7 @@ public class ContactHelper extends HelperBase {
 
     public void addContactToGroup(ContactData contact, GroupData group) {
         openHomePage();
-        selectGroupFilter();
+        //selectGroupFilter();
         selectContact(contact);
         selectGroupToAdd(group);
         addSelectedContactToGroup(group);

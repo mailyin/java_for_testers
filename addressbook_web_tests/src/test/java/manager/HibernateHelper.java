@@ -3,7 +3,9 @@ package manager;
 import io.qameta.allure.Step;
 import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
+import manager.hbm.ContactInGroupRecord;
 import model.ContactData;
+import model.ContactInGroupData;
 import model.GroupData;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
@@ -22,6 +24,7 @@ public class HibernateHelper extends HelperBase {
         sessionFactory = new Configuration()
                 .addAnnotatedClass(GroupRecord.class)
                 .addAnnotatedClass(ContactRecord.class)
+                .addAnnotatedClass(ContactInGroupRecord.class)
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull")
                 .setProperty(AvailableSettings.USER, "root")
                 .setProperty(AvailableSettings.PASS, "")
@@ -78,6 +81,31 @@ public class HibernateHelper extends HelperBase {
         return new ContactRecord(Integer.parseInt(id), data.first_name(), data.last_name(), data.address(), data.email(), data.email2(), data.email3(), data.nick_name(), data.company(), data.home_page(), data.home(), data.mobile(), data.work());
     }
 
+
+
+
+
+    //Преобразовывает ContactInGroupRecord в ContactInGroupData
+    static List<ContactInGroupData> convertContactInGroupList(List<ContactInGroupRecord> records) {
+        return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
+    }
+
+    //Преобразовывает ContactInGroupData в ContactInGroupRecord
+    private static ContactInGroupData convert(ContactInGroupRecord record) {
+        return new ContactInGroupData("" + record.id, record.group_id);
+    }
+
+    private static ContactInGroupRecord convert(ContactInGroupData data) {
+        var id = data.id();
+        if ("".equals(id)) {
+            id = "0";
+        }
+        return new ContactInGroupRecord(Integer.parseInt(id), data.group_id());
+    }
+
+
+
+
     @Step
     public List<GroupData> getGroupList() {
         return convertGroupList((List<GroupRecord>) sessionFactory.fromSession(session -> {
@@ -125,5 +153,11 @@ public class HibernateHelper extends HelperBase {
         return sessionFactory.fromSession(session -> {
             return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
         });
+    }
+
+    public List<ContactInGroupData> getAllContactsInGroups() {
+        return convertContactInGroupList((List<ContactInGroupRecord>) sessionFactory.fromSession(session -> {
+            return session.createQuery("from ContactInGroupRecord", ContactInGroupRecord.class).list();
+        }));
     }
 }
