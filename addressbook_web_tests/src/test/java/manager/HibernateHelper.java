@@ -3,9 +3,9 @@ package manager;
 import io.qameta.allure.Step;
 import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
-import manager.hbm.ContactInGroupRecord;
+import manager.hbm.ContactAndGroupRecord;
 import model.ContactData;
-import model.ContactInGroupData;
+import model.ContactAndGroupData;
 import model.GroupData;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
@@ -24,7 +24,7 @@ public class HibernateHelper extends HelperBase {
         sessionFactory = new Configuration()
                 .addAnnotatedClass(GroupRecord.class)
                 .addAnnotatedClass(ContactRecord.class)
-                .addAnnotatedClass(ContactInGroupRecord.class)
+                .addAnnotatedClass(ContactAndGroupRecord.class)
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull")
                 .setProperty(AvailableSettings.USER, "root")
                 .setProperty(AvailableSettings.PASS, "")
@@ -82,28 +82,23 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
-
-
     //Преобразовывает ContactInGroupRecord в ContactInGroupData
-    static List<ContactInGroupData> convertContactInGroupList(List<ContactInGroupRecord> records) {
+    static List<ContactAndGroupData> convertContactAndGroupList(List<ContactAndGroupRecord> records) {
         return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
     }
 
     //Преобразовывает ContactInGroupData в ContactInGroupRecord
-    private static ContactInGroupData convert(ContactInGroupRecord record) {
-        return new ContactInGroupData("" + record.id, record.group_id);
+    private static ContactAndGroupData convert(ContactAndGroupRecord record) {
+        return new ContactAndGroupData("" + record.id, record.group_id);
     }
 
-    private static ContactInGroupRecord convert(ContactInGroupData data) {
+    private static ContactAndGroupRecord convert(ContactAndGroupData data) {
         var id = data.id();
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactInGroupRecord(Integer.parseInt(id), data.group_id());
+        return new ContactAndGroupRecord(Integer.parseInt(id), data.group_id());
     }
-
-
 
 
     @Step
@@ -155,9 +150,9 @@ public class HibernateHelper extends HelperBase {
         });
     }
 
-    public List<ContactInGroupData> getAllContactsInGroups() {
-        return convertContactInGroupList((List<ContactInGroupRecord>) sessionFactory.fromSession(session -> {
-            return session.createQuery("from ContactInGroupRecord", ContactInGroupRecord.class).list();
+    public List<ContactAndGroupData> getAllContactsInGroups() {
+        return convertContactAndGroupList((List<ContactAndGroupRecord>) sessionFactory.fromSession(session -> {
+            return session.createQuery("from ContactAndGroupRecord", ContactAndGroupRecord.class).list();
         }));
     }
 }

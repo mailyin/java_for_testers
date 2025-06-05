@@ -1,16 +1,14 @@
 package manager;
 
 import model.ContactData;
+import model.ContactAndGroupData;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import tests.HelperBase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class ContactHelper extends HelperBase {
@@ -24,10 +22,11 @@ public class ContactHelper extends HelperBase {
         return managerr.isElementPresent(By.name("selected[]"));
     }
 
-    public void createContact(ContactData contact) {
+    public ContactData createContact(ContactData contact) {
         openContactPage();
         fillContactForm(contact);
         submitContactCreation();
+        return contact;
     }
 
     public void createContactInGroup(ContactData contact, GroupData group) {
@@ -203,5 +202,35 @@ public class ContactHelper extends HelperBase {
             result.put(id, phones);
         }
         return result;
+    }
+
+    public static List<ContactData> getContactsNotInGroup(List<ContactAndGroupData> contactsAndGroup, List<ContactData> allContacts) {
+        Set<String> idsInGroup = new HashSet<>();
+        for (ContactAndGroupData contact : contactsAndGroup) {
+            idsInGroup.add(contact.id());
+        }
+
+        List<ContactData> contactsNotInGroup = new ArrayList<>();
+        for (ContactData contact : allContacts) {
+            if (!idsInGroup.contains(contact.id())) {
+                contactsNotInGroup.add(contact);
+            }
+        }
+        return contactsNotInGroup;
+    }
+
+    public static List<ContactData> getContactsInGroup(List<ContactAndGroupData> contactsAndGroup, List<ContactData> allContacts) {
+        Set<String> idsInGroup = new HashSet<>();
+        for (ContactAndGroupData contact : contactsAndGroup) {
+            idsInGroup.add(contact.id());
+        }
+
+        List<ContactData> contactsInGroup = new ArrayList<>();
+        for (ContactData contact : allContacts) {
+            if (idsInGroup.contains(contact.id())) {
+                contactsInGroup.add(contact);
+            }
+        }
+        return contactsInGroup;
     }
 }

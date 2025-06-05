@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "address_in_groups")
-public class ContactInGroupRecord {
+public class ContactAndGroupRecord {
 
     @Id
     @Column(name = "id")
@@ -19,10 +19,10 @@ public class ContactInGroupRecord {
 
     public Date deprecated = new Date();
 
-    public ContactInGroupRecord() {
+    public ContactAndGroupRecord() {
     }
 
-    public ContactInGroupRecord(int id, String group_id) {
+    public ContactAndGroupRecord(int id, String group_id) {
         this.id = id;
         this.group_id = group_id;
 
